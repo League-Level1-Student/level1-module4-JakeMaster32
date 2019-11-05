@@ -27,7 +27,7 @@ public class SimonSays extends KeyAdapter {
 	private int tries = 0;
 	private boolean simonSays = false;
 	Date timeAtStart;
-
+	int points = 0;
 	// Complete steps 1 - 7 before you test
 	// 1. Declare a JFrame variable
 JFrame frame = new JFrame();
@@ -49,6 +49,19 @@ showImage();
 		// 15. Make a points variable to track the score.
 
 		// 16. If the keyCode matches the imageIndex and "Simon says"
+if (e.getKeyCode() == imageIndex && simonSays) {
+points = points+1;
+speak("CccooooccoocococococccccccccccccoooororooorroorrrrrrrrooooroooorroooorooorrrrrrorrrorroRRRRRRRRREEEEEEEEEEEEEEEEEEEEEEEEEEEccccctccctccctcctttctttttttctttt and I oopsksksksksksksks");
+}
+else if (e.getKeyCode() != imageIndex && !simonSays) {
+	points = points+1;
+	speak("Cccooooccoocococococccccccccccccoooororooorroorrrrrrrrooooroooorroooorooorrrrrrorrrorrorrrrrreeeceeeeceeeccccctccctccctcctttctttttttctttt and I oopsksksksksksksks");
+}
+else {
+	speak("incooooooooorrrrrrrrect");
+}
+speak("You have "+points+" points");
+showImage();
 
 		// 17. Increase the value of score
 
@@ -72,6 +85,7 @@ showImage();
 		// 23. Dispose of the frame
 
 		// 24. Call the showImage method to show a new image
+
 	}
 
 	private void showImage() {
@@ -95,30 +109,15 @@ frame.addKeyListener(this);
 Random rand = new Random();
 		// 13. Use the Random and the speak method to either say
 		// "Simon says press this key" or "Press this key"
-int x = rand.nextInt(8);
+int x = rand.nextInt(2);
 if (x == 0) {
-	speak("Simon says press up");
+	speak("Simon says press this");
+	simonSays = true;
 }
+
 else if (x == 1) {
-	speak("Simon says press down");
-}
-else if (x == 2) {
-	speak("Simon says press left");
-}
-else if (x == 3) {
-	speak("Simon says press right");
-}
-else if (x == 4) {
-	speak("Press up");
-}
-else if (x == 5) {
-	speak("Press down");
-}
-else if (x == 6) {
-	speak("Press left");
-}
-else if (x == 7) {
-	speak("Press right");
+	speak("Press this");
+	simonSays = false;
 }
 		// 14. Above, set the value of simonSays to true/false appropriately
 
