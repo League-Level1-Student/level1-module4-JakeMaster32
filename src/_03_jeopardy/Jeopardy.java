@@ -34,7 +34,7 @@ import javax.swing.JPanel;
 public class Jeopardy implements ActionListener {
 	private JButton firstButton;
 	private JButton secondButton;
-	private JButton thirdButton, fourthButton;
+	private JButton thirdButton, fourthButton, fifthButton;
 	private JPanel quizPanel;
 	private int score = 0;
 	private JLabel scoreBox = new JLabel("0");
@@ -50,33 +50,40 @@ public class Jeopardy implements ActionListener {
 		frame.setLayout(new BorderLayout());
 
 		// 1. Make the frame show up
-
+frame.setVisible(true);
 		// 2. Give your frame a title
-
+frame.setName("Jeopardy");
 		// 3. Create a JPanel variable to hold the header using the createHeader method
+JPanel panel = createHeader("Marvel/DC");
 
 		// 4. Add the header component to the quizPanel
-
+quizPanel.add(panel);
 		// 5. Add the quizPanel to the frame
-
+frame.add(quizPanel);
 		// 6. Use the createButton method to set the value of firstButton
-
+firstButton = createButton("$1000");
 		// 7. Add the firstButton to the quizPanel
-
+quizPanel.add(firstButton);
 		// 8. Write the code to complete the createButton() method below. Check that your
 		// game looks like Figure 1 in the Jeopardy Handout - http://bit.ly/1bvnvd4.
 
 		// 9. Use the secondButton variable to hold a button using the createButton
 		// method
-
+secondButton = createButton("$800");
 		// 10. Add the secondButton to the quizPanel
-
+quizPanel.add(secondButton);
 		// 11. Add action listeners to the buttons (2 lines of code)
-
+firstButton.addActionListener(this);
+secondButton.addActionListener(this);
 		// 12. Write the code to complete the actionPerformed() method below
 
 		// 13. Add buttons so that you have $200, $400, $600, $800 and $1000 questions
-		
+		thirdButton = createButton("$600");
+		fourthButton = createButton("$400");
+		fifthButton = createButton("$200");
+		quizPanel.add(thirdButton);
+		quizPanel.add(fourthButton);
+		quizPanel.add(fifthButton);
 		 /*
 		 * [optional] Use the showImage or playSound methods when the user answers a
 		 * question
@@ -93,14 +100,14 @@ public class Jeopardy implements ActionListener {
 	private JButton createButton(String dollarAmount) {
 		
 		// Create a new JButton
-
+JButton button = new JButton();
 		// Set the text of the button to the dollarAmount
-
+button.setText(dollarAmount);
 		// Increment the buttonCount (this should make the layout vertical)
-
+buttonCount++;
 		// Return your new button instead of the temporary button
-
-		return new JButton("temporary button");
+return button;
+		
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -110,7 +117,18 @@ public class Jeopardy implements ActionListener {
 
 		JButton buttonPressed = (JButton) e.getSource();
 		// If the buttonPressed was the firstButton
-
+if (buttonPressed == firstButton) {
+	askQuestion("What's the name of the documents that regulated the Avengers activity in Civil War?", "Sokovia Accords", 1000);
+}
+else if (buttonPressed == secondButton) {
+	askQuestion("What is the name of the being who controls the dark dimension in Doctor Strange", "Dormammu", 800);
+}
+if (buttonPressed == thirdButton) {
+	askQuestion("What's the real name of the vulture from Spiderman Homecoming", "Adrian Toomes", 600);
+}
+if (buttonPressed == fourthButton) {
+	askQuestion("How many marvel movies are there?", "23", 400);
+}
 			// Call the askQuestion() method
  
 		// Complete the code in the askQuestion() method. When you play the game, the score should change.
