@@ -54,7 +54,7 @@ frame.setVisible(true);
 		// 2. Give your frame a title
 frame.setName("Jeopardy");
 		// 3. Create a JPanel variable to hold the header using the createHeader method
-JPanel panel = createHeader("Marvel/DC");
+JPanel panel = createHeader("Asher");
 
 		// 4. Add the header component to the quizPanel
 quizPanel.add(panel);
@@ -75,6 +75,7 @@ quizPanel.add(secondButton);
 		// 11. Add action listeners to the buttons (2 lines of code)
 firstButton.addActionListener(this);
 secondButton.addActionListener(this);
+
 		// 12. Write the code to complete the actionPerformed() method below
 
 		// 13. Add buttons so that you have $200, $400, $600, $800 and $1000 questions
@@ -84,6 +85,9 @@ secondButton.addActionListener(this);
 		quizPanel.add(thirdButton);
 		quizPanel.add(fourthButton);
 		quizPanel.add(fifthButton);
+		thirdButton.addActionListener(this);
+		fourthButton.addActionListener(this);
+		fifthButton.addActionListener(this);
 		 /*
 		 * [optional] Use the showImage or playSound methods when the user answers a
 		 * question
@@ -118,16 +122,19 @@ return button;
 		JButton buttonPressed = (JButton) e.getSource();
 		// If the buttonPressed was the firstButton
 if (buttonPressed == firstButton) {
-	askQuestion("What's the name of the documents that regulated the Avengers activity in Civil War?", "Sokovia Accords", 1000);
+	askQuestion("Why does asher always wear sunglasses", "No one knows", 1000);
 }
 else if (buttonPressed == secondButton) {
-	askQuestion("What is the name of the being who controls the dark dimension in Doctor Strange", "Dormammu", 800);
+	askQuestion("What restaurant does asher always get a drink from", "In-n-out", 800);
 }
-if (buttonPressed == thirdButton) {
-	askQuestion("What's the real name of the vulture from Spiderman Homecoming", "Adrian Toomes", 600);
+else if (buttonPressed == thirdButton) {
+	askQuestion("What is Ashers favorite meme", "Kazoo kid", 600);
 }
-if (buttonPressed == fourthButton) {
-	askQuestion("How many marvel movies are there?", "23", 400);
+else if (buttonPressed == fourthButton) {
+	askQuestion("How tall is Asher", "4'0", 400);
+}
+else {
+	askQuestion("What special feature does Asher's shoes have","Bottle openers", 200);
 }
 			// Call the askQuestion() method
  
@@ -144,14 +151,17 @@ if (buttonPressed == fourthButton) {
 	private void askQuestion(String question, String correctAnswer, int prizeMoney) {
 		
 		// Use the playJeopardyTheme() method to play music while the use thinks of an answer
-		
+		playJeopardyTheme();
 		// Remove this temporary message and replace it with a pop-up that asks the user the question
-		JOptionPane.showMessageDialog(null, "this is where the question will be asked");
+		String x = JOptionPane.showInputDialog(null, ""+question);
 		
 		// Stop the theme music when they have entered their response. Hint: use the sound variable 
-		
+		sound.stop();
 		// If the answer is correct
-
+if (x.equalsIgnoreCase(correctAnswer)) {
+	score = score+prizeMoney;
+	JOptionPane.showMessageDialog(null, "Correct");
+}
 			// Increase the score by the prizeMoney
 
 			// Pop up a message to tell the user they were correct
@@ -159,11 +169,15 @@ if (buttonPressed == fourthButton) {
 		// Otherwise
 
 			// Decrement the score by the prizeMoney
-
+else {
+	score = score - prizeMoney;
+	JOptionPane.showMessageDialog(null, "WRONG");
+	JOptionPane.showMessageDialog(null, "Correct Answer = "+correctAnswer);;
+}
 			// Pop up a message to tell the user they were wrong and give them the correct answer
 
 		// Call the updateScore() method
-
+updateScore();
 	}
 
 	public void playJeopardyTheme() {
