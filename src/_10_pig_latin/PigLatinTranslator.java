@@ -1,9 +1,34 @@
 package _10_pig_latin;
 
-public class Pig_latin {
-	public class PigLatinTranslator {
-public void main(String[] args) {
-	
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+
+	public class PigLatinTranslator implements ActionListener {
+		JTextField text = new JTextField(17);
+		JLabel label = new JLabel("                     ");
+public static void main(String[] args) {
+	PigLatinTranslator daddy = new PigLatinTranslator();
+	daddy.setup();
+}
+		private void setup() {
+	// TODO Auto-generated method stub
+	JFrame frame = new JFrame("Pig Latin Translator");
+	JPanel panel = new JPanel();
+	JButton button = new JButton("translate");
+    panel.add(text);
+    panel.add(button);
+    panel.add(label);
+    frame.add(panel);
+    frame.setSize(600, 75);
+    frame.setVisible(true);
+button.addActionListener(this);
 }
 		/**
 		 * Method to test whether a character is a letter or not.
@@ -70,5 +95,11 @@ public void main(String[] args) {
 					return i;
 			return 0;
 		}
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			String x = translate(text.getText());
+			label.setText(x);
+		}
 	}
-}
+
